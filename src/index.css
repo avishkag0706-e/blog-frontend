@@ -1,0 +1,399 @@
+/* src/index.css - global styles, design tokens and shared utilities */
+
+:root {
+  color-scheme: light;
+
+  /* palette */
+  --bg: #f6f7fb;
+  --bg-tint: #eef1f9;
+  --surface: #ffffff;
+  --surface-2: #fbfbfd;
+  --border: #e6e8f0;
+  --border-strong: #d7dae6;
+  --border-hover: #c3c7d8;
+  --text: #14161c;
+  --text-soft: #5a6072;
+  --text-faint: #8b91a5;
+  --text-body: #2b2f3a;
+
+  /* brand */
+  --brand: #4f46e5;
+  --brand-deep: #4338ca; /* darker stop for filled controls */
+  --brand-dark: #4338ca; /* readable accent text on soft backgrounds */
+  --brand-soft: #eef2ff;
+  --brand-soft-hover: #e3e8ff;
+  --accent: #ec4899;
+  --accent-soft: #fce7f3;
+
+  /* status */
+  --danger: #dc2626;
+  --danger-dark: #b91c1c;
+  --danger-soft: #fef2f2;
+  --danger-border: #fbd5d5;
+
+  /* gradients */
+  --bg-glow:
+    radial-gradient(1200px 560px at 50% -280px, #e7e8ff 0%, rgba(231, 232, 255, 0) 70%),
+    radial-gradient(760px 440px at 92% -170px, #ffe3f2 0%, rgba(255, 227, 242, 0) 65%);
+  --grad-accent: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+  --grad-text: linear-gradient(115deg, var(--brand-dark) 0%, var(--accent) 100%);
+  --grad-line: linear-gradient(90deg, transparent 0%, var(--brand) 40%, var(--accent) 60%, transparent 100%);
+  --grad-btn: linear-gradient(135deg, var(--brand) 0%, #6d5df6 100%);
+  --grad-btn-hover: linear-gradient(135deg, var(--brand-deep) 0%, #5b4be0 100%);
+  --grad-danger: linear-gradient(135deg, var(--danger) 0%, #ef4444 100%);
+  --grad-danger-hover: linear-gradient(135deg, var(--danger-dark) 0%, var(--danger) 100%);
+  --grad-card-bg: linear-gradient(160deg, #ffffff 0%, #fdfdff 55%, #f7f9ff 100%);
+  --grad-card-border: linear-gradient(150deg, #e4e7f3 0%, #eef1fb 100%);
+  --grad-input: linear-gradient(180deg, #fdfdfe 0%, #f7f8fc 100%);
+  --grad-input-focus: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
+
+  /* surfaces + chrome */
+  --navbar-bg: rgba(255, 255, 255, 0.82);
+  --navbar-border: rgba(230, 232, 240, 0.9);
+  --footer-bg: rgba(255, 255, 255, 0.6);
+  --chip-bg: #f2f3f9;
+  --ghost-bg: #ffffff;
+  --ghost-bg-hover: #f7f8fc;
+  --spinner-track: #dcdff5;
+  --selection-bg: #c7d2fe;
+  --selection-text: #25225c;
+  --scrollbar-thumb: #d5d8e6;
+  --scrollbar-thumb-hover: #b9bdce;
+
+  /* shape + depth */
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 1px 2px rgba(20, 22, 28, 0.05);
+  --shadow: 0 6px 24px -8px rgba(20, 22, 28, 0.12);
+  --shadow-lg: 0 24px 48px -20px rgba(20, 22, 28, 0.28);
+  --glow-card: var(--shadow);
+  --glow-brand: rgba(79, 70, 229, 0.85);
+  --glow-danger: rgba(220, 38, 38, 0.8);
+  --ring: rgba(79, 70, 229, 0.14);
+  --ring-focus: rgba(79, 70, 229, 0.4);
+
+  /* typography */
+  --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+}
+
+/* ---------- dark palette (applied by <html data-theme="dark">) ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* palette */
+  --bg: #080a12;
+  --bg-tint: #0e1220;
+  --surface: #151a2b;
+  --surface-2: #10141f;
+  --border: #242a41;
+  --border-strong: #343b58;
+  --border-hover: #4a5377;
+  --text: #e9ecf7;
+  --text-soft: #a3aac4;
+  --text-faint: #8b93b0;
+  --text-body: #c7ccdf;
+
+  /* brand - brightened so it still pops on near-black */
+  --brand: #7c84ff;
+  --brand-deep: #6366f1;
+  --brand-dark: #a9b0ff;
+  --brand-soft: rgba(124, 132, 255, 0.16);
+  --brand-soft-hover: rgba(124, 132, 255, 0.26);
+  --accent: #f472b6;
+  --accent-soft: rgba(244, 114, 182, 0.16);
+
+  /* status */
+  --danger: #dc2626;
+  --danger-dark: #fca5a5;
+  --danger-soft: rgba(248, 113, 113, 0.12);
+  --danger-border: rgba(248, 113, 113, 0.34);
+
+  /* gradients - indigo, magenta and a hint of cyan over deep space */
+  --bg-glow:
+    radial-gradient(1100px 560px at 50% -260px, rgba(99, 102, 241, 0.38) 0%, rgba(99, 102, 241, 0) 68%),
+    radial-gradient(780px 460px at 90% -150px, rgba(236, 72, 153, 0.24) 0%, rgba(236, 72, 153, 0) 64%),
+    radial-gradient(720px 680px at 0% 108%, rgba(56, 189, 248, 0.14) 0%, rgba(56, 189, 248, 0) 60%);
+  --grad-text: linear-gradient(115deg, #a5b4fc 0%, #f0abfc 55%, #fbcfe8 100%);
+  --grad-btn: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --grad-btn-hover: linear-gradient(135deg, #7c84ff 0%, #a78bfa 100%);
+  --grad-danger: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  --grad-danger-hover: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  --grad-card-bg: linear-gradient(160deg, #1a2033 0%, #151a2b 55%, #12162a 100%);
+  --grad-card-border: linear-gradient(150deg, rgba(124, 132, 255, 0.55) 0%, rgba(244, 114, 182, 0.38) 100%);
+  --grad-input: linear-gradient(180deg, #10141f 0%, #0d111c 100%);
+  --grad-input-focus: linear-gradient(180deg, #1a2033 0%, #171c2c 100%);
+
+  /* surfaces + chrome */
+  --navbar-bg: rgba(8, 10, 18, 0.75);
+  --navbar-border: rgba(36, 42, 65, 0.9);
+  --footer-bg: rgba(8, 10, 18, 0.55);
+  --chip-bg: rgba(255, 255, 255, 0.06);
+  --ghost-bg: rgba(255, 255, 255, 0.05);
+  --ghost-bg-hover: rgba(255, 255, 255, 0.1);
+  --spinner-track: rgba(255, 255, 255, 0.14);
+  --selection-bg: rgba(124, 132, 255, 0.5);
+  --selection-text: #f4f5ff;
+  --scrollbar-thumb: #2f3654;
+  --scrollbar-thumb-hover: #414a75;
+
+  /* shape + depth */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.75);
+  --shadow-lg: 0 30px 60px -26px rgba(0, 0, 0, 0.85);
+  --glow-card: 0 18px 44px -22px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(124, 132, 255, 0.32);
+  --glow-brand: rgba(124, 132, 255, 0.45);
+  --glow-danger: rgba(239, 68, 68, 0.4);
+  --ring: rgba(124, 132, 255, 0.24);
+  --ring-focus: rgba(124, 132, 255, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg-glow), var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--brand-dark);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 20px 96px;
+  animation: page-in 0.35s ease both;
+}
+
+/* ---------- shared utility classes ---------- */
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.lede {
+  margin: 8px 0 0;
+  color: var(--text-soft);
+  font-size: 17px;
+}
+
+.page-hero .btn {
+  margin-top: 0;
+}
+
+/* Buttons reset for <Link> elements rendered as buttons */
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- loading state ---------- */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 64px 20px;
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid var(--spinner-track);
+  border-top-color: var(--brand);
+  animation: spin 0.7s linear infinite;
+}
+
+/* ---------- empty state ---------- */
+.empty-state {
+  background: var(--grad-card-bg);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 56px 24px;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.empty-state .empty-icon {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.empty-state h3 {
+  margin: 14px 0 6px;
+  font-size: 19px;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+/* ---------- page hero (used on Home) ---------- */
+.page-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.page-hero h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 600;
+}
+
+/* Display headings wear the accent gradient (hero + form + article titles). */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .page-hero h1,
+  .page-head h1,
+  .form-box h1,
+  .card h1 {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* ---------- avatars ---------- */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--grad-accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
+}
+
+.avatar-sm {
+  width: 26px;
+  height: 26px;
+  font-size: 11px;
+}
+
+/* ---------- keyframes ---------- */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- accessibility ---------- */
+:focus-visible {
+  outline: 3px solid var(--ring-focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* scrollbars that match the active theme */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+:root[data-theme="dark"] {
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
